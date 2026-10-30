@@ -1,0 +1,14 @@
+{
+  "003490": {
+    "iem_cd": "003490",
+    "iem_nm": "대한항공",
+    "buy_price": 26000,
+    "stop_loss_price": 25000,
+    "profit_cut_price": 28000,
+    "target_type": "PRICE",
+    "loss_pct": -4.0480466391579775,
+    "profit_pct": 7.46618776414307,
+    "use_trailing": true,
+    "is_active": true
+  }
+}

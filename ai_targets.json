@@ -1,0 +1,42 @@
+{
+  "469610": {
+    "iem_cd": "469610",
+    "iem_nm": "이노테크",
+    "target_price": 12740,
+    "target_qty": 1,
+    "budget": 12740,
+    "max_buy_price": 0,
+    "sell_target_price": 0,
+    "stop_loss_price": 0,
+    "loss_pct": -5.0,
+    "min_profit_pct": 5.0,
+    "total_target_qty": 1,
+    "remaining_qty": 1,
+    "accumulated_qty": 0,
+    "accumulated_amt": 0.0,
+    "use_dynamic_ai": true,
+    "auto_buy": true,
+    "confidence": 78,
+    "is_active": true
+  },
+  "003490": {
+    "iem_cd": "003490",
+    "iem_nm": "대한항공",
+    "target_price": 26450,
+    "target_qty": 1,
+    "budget": 26450,
+    "max_buy_price": 0,
+    "sell_target_price": 0,
+    "stop_loss_price": 0,
+    "loss_pct": -5.0,
+    "min_profit_pct": 5.0,
+    "total_target_qty": 1,
+    "remaining_qty": 1,
+    "accumulated_qty": 0,
+    "accumulated_amt": 0.0,
+    "use_dynamic_ai": true,
+    "auto_buy": true,
+    "confidence": 88,
+    "is_active": true
+  }
+}

@@ -1,0 +1,19 @@
+[Unit]
+Description=AutoStock NH Trading Engine Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=opc
+WorkingDirectory=/home/opc/AutoStock
+ExecStart=/home/opc/AutoStock/.venv/bin/python -u main.py
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+# 표준 출력 및 에러 로그 기록
+StandardOutput=append:/home/opc/AutoStock/autostock.log
+StandardError=append:/home/opc/AutoStock/autostock.log
+
+[Install]
+WantedBy=multi-user.target

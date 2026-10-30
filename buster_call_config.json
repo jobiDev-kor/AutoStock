@@ -1,0 +1,10 @@
+{
+  "enabled": false,
+  "last_triggered_date_kospi": "",
+  "last_triggered_date_kosdaq": "",
+  "kosdaq_inverse_code": "251340",
+  "kospi_inverse_code": "114800",
+  "etf_loss_pct": -3.0,
+  "etf_profit_pct": 3.0,
+  "etf_trailing_fallback_pct": 0.8
+}
