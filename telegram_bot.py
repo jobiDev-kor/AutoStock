@@ -298,6 +298,10 @@ class TelegramNotifier:
                 " • <code>/버스터콜 리셋</code> : 오늘 발동 이력 초기화 (재감시 가능)\n"
                 " • <code>/버스터콜 실행</code> : 현재 시장 조건으로 즉시 헤지 집행 (수동)\n"
                 " • <i>(장전 매수차단+Kelly급락 시 현물 100% 유지 & 동일금액 인버스 헤지 매수)</i>\n\n"
+                "🌍 <b>5. GCFI 글로벌 자본 이동 & AI 미국 선물 예측</b>\n"
+                " • <code>/글로벌</code> (또는 <code>/자본</code>, <code>/gcfi</code>) : 글로벌 자산군 순유출입, 시장 국면, 선물 방향 종합 브리핑\n"
+                " • <code>/미국선물</code> (또는 <code>/선물</code>) : S&P 500(ES), 나스닥 100(NQ) AI 예측 및 Top 매크로 팩터\n"
+                " • <code>/자본회전</code> (또는 <code>/회전</code>) : 어디서 빠져나간 돈이 어디로 몇 % 흡수되었는지 자본 이동 경로 추적\n\n"
                 "💡 <i>MTS로 직접 매수하시면 봇이 즉시 감지하여 텔레그램으로 손절/익절 설정 버튼을 보내드립니다.</i>"
             )
 
@@ -373,6 +377,33 @@ class TelegramNotifier:
             bc_icon = "🟢 ON" if bc_st["enabled"] else "⚪ OFF"
             bc_footer = f"\n\n🚨 <b>버스터콜 비상 헤지</b>: <b>{bc_icon}</b> (장전 매수차단+Kelly급락 시 현물유지 & 인버스 동일금액 헤지매수)"
             return mkt.briefing_text + bc_footer
+
+        # 2-1-1) GCFI 글로벌 자본 이동 종합 브리핑 (/글로벌, /자본, /gcfi)
+        if cmd in ("/글로벌", "글로벌", "/자본", "자본", "/gcfi", "gcfi", "/자금흐름", "자금흐름", "/global", "global"):
+            try:
+                from gcfi.telegram_reporter import format_gcfi_telegram_briefing
+                return format_gcfi_telegram_briefing()
+            except Exception as e:
+                logger.error(f"GCFI 글로벌 브리핑 생성 오류: {e}")
+                return f"⚠️ 글로벌 자본 이동 데이터 조회 중 오류가 발생했습니다: {e}"
+
+        # 2-1-2) GCFI 미국 선물 및 AI 퀀트 방향성 진단 (/미국선물, /선물, /es, /nq)
+        if cmd in ("/미국선물", "미국선물", "/선물", "선물", "/es", "/nq", "/futures", "futures"):
+            try:
+                from gcfi.telegram_reporter import format_futures_detail_briefing
+                return format_futures_detail_briefing()
+            except Exception as e:
+                logger.error(f"GCFI 미국 선물 브리핑 생성 오류: {e}")
+                return f"⚠️ 미국 선물 AI 진단 조회 중 오류가 발생했습니다: {e}"
+
+        # 2-1-3) GCFI 자본 회전 경로 및 흡수 네트워크 (/자본회전, /회전)
+        if cmd in ("/자본회전", "자본회전", "/회전", "회전", "/rotation", "rotation"):
+            try:
+                from gcfi.telegram_reporter import format_capital_rotation_briefing
+                return format_capital_rotation_briefing()
+            except Exception as e:
+                logger.error(f"GCFI 자본 회전 브리핑 생성 오류: {e}")
+                return f"⚠️ 자본 회전 네트워크 조회 중 오류가 발생했습니다: {e}"
 
         # 2-2) 버스터콜(Buster Call) 제어 및 상태 조회
         if cmd.startswith("/버스터콜") or cmd.startswith("버스터콜") or cmd.startswith("/bustercall") or cmd.startswith("bustercall"):

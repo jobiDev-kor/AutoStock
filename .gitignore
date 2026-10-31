@@ -8,3 +8,4 @@ logs/
 *.key
 *.pem
 *.log
+*.db
